@@ -47,15 +47,31 @@ MyApp.addToList = function(list) {
         $newLi.html = $('<input type="checkbox" value="1" />').prependTo($newLi);
         list.append($newLi);
 
-    };
-};
-
-TaskComplete.checked = function(event){
-    $TaskComplete.checked(true);{
-        event.preventDefault();
-        $thingList.textLineThrough;
     }
 };
+
+$(document).ready(function () {
+    $('.fav-thing').on('click', function (event) {
+        if ($(this).attr('checked')) $(this).valueOf('ul').parent().addClass('checked');
+        else $(this).valueOf('ul').parent().removeClass('checked');
+    });
+}
+);
+
+//$('fav-list'; first - child").click(function() {;
+//if (!$(this).is(":checked")) {
+    //change style back
+//}
+//}
+/* $('#fav-list') = function(event){
+    $TaskComplete.checked(true);{
+        event.preventDefault();
+        $(this).addClass("checked")
+        else
+        $(this).removeClass("checked");
+        //$thingList.textLineThrough;
+    }
+};  */
 
 
 
