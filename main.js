@@ -19,64 +19,52 @@
 
 $(function() {
     var yourName = prompt('What is your name?');
-
     $('#name').html(yourName);
-
     var $thingList = $('#fav-list');
-
     var $button = $('#new-thing-button');
     // button.onclick = function(event) {
     $button.on('click', function(event) {
         event.preventDefault();
         MyApp.addToList($thingList);
     });
+
+    /*var closest_checkbox_container;
+     $(<closest_checkbox_container>).on('change', 'input:checkbox', function(){
+     $(this).('ul').parent().addClass('checked');
+     }); */
+    $( "ul li" ).bind( "click", function () {
+        //$(this).('ul').descendants()
+        $(this).wrap("<strike>");
+    });
+
+    $( "ul li" ).bind( "uncheck", function () {
+        //$(this).('ul').descendants()
+        $(this).wrap("<none>");
+    });
+
+    // $(selector).delegate(childSelector, event, data, function)
+
+
+
 });
 
 
 var MyApp = {};
-var TaskComplete = {};
 
 MyApp.addToList = function(list) {
     var $newLi = $('<li>');
-
     var $newItemText = $('#new-thing');
+    //You should put this in some tag, not just plain html.
+    //You can't style plain text, unless you reference the parent
     $newLi.html($newItemText.val());
-    
+
     $newItemText.val('');
     if ($newLi.html() !== '') {
         $newLi.html = $('<input type="checkbox" value="1" />').prependTo($newLi);
         list.append($newLi);
-
     }
-};
-
-$(document).ready(function () {
-    $('.fav-thing').on('click', function (event) {
-        if ($(this).attr('checked')) $(this).valueOf('ul').parent().addClass('checked');
-        else $(this).valueOf('ul').parent().removeClass('checked');
+    $( "ul li" ).on( "click", function () {
+        //$(this).('ul').descendants()
+        $(this).wrap("<strike>");//className("ul.checkbox.checkbox");
     });
-}
-);
-
-//$('fav-list'; first - child").click(function() {;
-//if (!$(this).is(":checked")) {
-    //change style back
-//}
-//}
-/* $('#fav-list') = function(event){
-    $TaskComplete.checked(true);{
-        event.preventDefault();
-        $(this).addClass("checked")
-        else
-        $(this).removeClass("checked");
-        //$thingList.textLineThrough;
-    }
-};  */
-
-
-
-//var selected = [];
-//$('#fav-list input:checked').each(function() {
-//    selected.push($(this).attr('name'));
-
-//});
+};
